@@ -12,8 +12,15 @@ defmodule Armsday.Destiny do
     body = bungie_api_get("http://www.bungie.net/platform/Destiny/SearchDestinyPlayer/2/#{URI.encode(username)}/").body
 
     obj = Poison.Parser.parse!(body)
-    IO.inspect(obj)
     obj["Response"] |> hd |> Map.get("membershipId")
+  end
+
+  def armsday_advisor(membership_id, character_id) do
+    url = "https://www.bungie.net/Platform/Destiny/2/Account/#{URI.encode(membership_id)}/Character/#{URI.encode(character_id)}/Advisors/"
+    obj = bungie_api_get(url).body |> Poison.Parser.parse!
+    armsDay = obj["Response"] |> Map.get("data") |> Map.get("armsDay")
+    redemptions = armsDay |> Map.get("redemptions")
+    IO.inspect(redemptions)
   end
 
   def character_ids(membership_id) do

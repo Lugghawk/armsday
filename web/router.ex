@@ -23,7 +23,8 @@ defmodule Armsday.Router do
   scope "/Destiny", Armsday do
     pipe_through :browser
 
-    get "/characters/:membershipType/:username", DestinyController, :lookup
+    get "/characters/:membershipType/:username", DestinyController, :account_lookup
+    get "/armsday/:membershipId/:characterId", DestinyController, :armsday_orders
   end
 
   # Other scopes may use custom stacks.

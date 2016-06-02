@@ -1,0 +1,3 @@
+<h1>Armsday redemptions</h1>
+
+<%= @armsday_orders %>

@@ -1,4 +1,7 @@
-<h1>Characters:<br/></h1>
+<h2>Account Id:</h2> <%= @membership_id %>
+
+<h2>Characters:<br/></h2>
+
 <%= for char <- @chars do %>
   <p><%= char %></p>
 <% end %>
