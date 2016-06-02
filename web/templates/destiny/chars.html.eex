@@ -1,0 +1,4 @@
+<h1>Characters:<br/></h1>
+<%= for char <- @chars do %>
+  <p><%= char %></p>
+<% end %>

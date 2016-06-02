@@ -13,10 +13,17 @@ defmodule Armsday.Router do
     plug :accepts, ["json"]
   end
 
+
   scope "/", Armsday do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+  end
+
+  scope "/Destiny", Armsday do
+    pipe_through :browser
+
+    get "/characters/:membershipType/:username", DestinyController, :lookup
   end
 
   # Other scopes may use custom stacks.
