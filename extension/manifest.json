@@ -1,0 +1,38 @@
+{
+	"manifest_version": 2,
+	"name": "ArmsDay",
+	"version": "0.1",
+	"description": "Armsday authentication helper.",
+	"icons": {
+	},
+	"short_name": "Armsday",
+	"background": {
+	},
+	"content_scripts": [{
+		"matches": [
+			"http://localhost:4000/*",
+			"*://*.bungie.net/*"
+			],
+		"js": [
+			"content-script.js"
+			]
+
+	}],
+	"background": {
+		"scripts": [
+			"jquery-1.12.4.min.js",
+			"background.js"
+			]
+	},
+	"permissions": [
+		"storage",
+	"*://*.bungie.net/*",
+	"http://localhost:4000/",
+	"cookies"
+		],
+	"browser_action": {
+	},
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+	"incognito": "split",
+	"offline_enabled": false
+}
