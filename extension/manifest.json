@@ -26,8 +26,7 @@
 	},
 	"background": {
 		"scripts": [
-			"jquery-1.12.4.min.js",
-			"background.js"
+			"bundle.js"
 			]
 	},
 	"permissions": [

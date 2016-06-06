@@ -3,7 +3,8 @@
 /db
 /deps
 /*.ez
-
+/extension/node_modules
+/extension/bundle.js
 
 *.swp
 
