@@ -1,2 +1,13 @@
-chrome.runtime.sendMessage("djakknaohcpilgodpbiapnmcbcdppgnb", {url: "https://www.bungie.net/Platform/User/GetBungieNetUser/"}, function(data){console.log(data)}); 
-console.log("hello");
+if(typeof browser === 'undefined' && chrome) {
+  window.browser = chrome;
+}
+
+var bungieUser = function() {
+  return new Promise(function(fulfill, reject) {
+    browser.runtime.sendMessage("ocdencmmibmlahloiflkionocbfafndp", {url: "https://www.bungie.net/Platform/User/GetBungieNetUser/"}, function(data){fulfill(data)});
+  });
+}
+
+bungieUser().then(function(user) {
+  console.log("Hello, " + user['Response']['psnId']);
+});

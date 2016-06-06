@@ -19,12 +19,12 @@ var bungledCookie = function() {
 }
 
 var bungieApi = function(apiRequest) {
-  return bungledCookie().then(function(bungledCookie) {
+  return bungledCookie().then(function(bungled) {
     return Promise.resolve($.ajax({
       url: apiRequest.url,
       headers: {
         "X-API-Key": "0742112eb3d0491e8203a038b64532f7",
-        "x-csrf": bungledCookie
+        "x-csrf": bungled.value
       }
     }))
   });
