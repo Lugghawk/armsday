@@ -4,7 +4,10 @@
 /deps
 /*.ez
 /extension/node_modules
-/extension/bundle.js
+/extension/*/bundle.js
+/extension/*.crx
+/extension/*.xpi
+/extension/chrome.pem
 
 *.swp
 

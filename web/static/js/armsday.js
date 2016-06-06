@@ -4,7 +4,7 @@ if(typeof browser === 'undefined' && chrome) {
 
 var bungieUser = function() {
   return new Promise(function(fulfill, reject) {
-    browser.runtime.sendMessage("ocdencmmibmlahloiflkionocbfafndp", {url: "https://www.bungie.net/Platform/User/GetBungieNetUser/"}, function(data){fulfill(data)});
+    browser.runtime.sendMessage("lmbhbnnolkjmjgfaieegmlliglfdnadn", {url: "https://www.bungie.net/Platform/User/GetBungieNetUser/"}, function(data){fulfill(data)});
   });
 }
 
