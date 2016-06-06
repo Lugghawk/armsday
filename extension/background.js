@@ -8,7 +8,7 @@ if(typeof browser === 'undefined' && chrome) {
 var bungledCookie = function() {
   return new Promise(function(fulfill, reject) {
     getBungieCookies().then(function(cookies) {
-      var bungled = R.find(R.propEq('nope', 'bungled'))(cookies);
+      var bungled = R.find(R.propEq('name', 'bungled'))(cookies);
       if(bungled === undefined) {
         reject("Bungled cookie not found");
       } else {
@@ -49,14 +49,10 @@ window.R = R;
 
 // debug end
 
-browser.runtime.onMessage.addListener(function (message, sender, sendResponse){
-  bungieApi(message, sendResponse);
+var onMessageResponse = function (message, sender, sendResponse){
+  bungieApi(message).then(function(data){ sendResponse(data)});
   return true;
-});
+}
 
-
-browser.runtime.onMessageExternal.addListener(function (message, sender, sendResponse){
-  bungieApi(message, sendResponse);
-  return true;
-});
-
+browser.runtime.onMessage.addListener(onMessageResponse);
+browser.runtime.onMessageExternal.addListener(onMessageResponse);
