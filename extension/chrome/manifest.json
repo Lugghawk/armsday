@@ -1,6 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "ArmsDay",
+	"key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAq97degSq9hfJM0hnH8BUPfLHcY+PZQh32LOEdvjxxNNLKWZ9/IwmlGSnvLK5dD8H2TQiAakxLSutRfTPnOJGFhggR0Y75DAZDpD4Qgjl2tirJm7eQuPCahUx1DCL2+//ydgJ2qqKBvQLPfQM9UR73HscO4JMGKdteBUl8tzRcFrCccIuZvvCvQn71ouHW4Ql2y4tqCyEP4kS2Ooix5OwaWwzHJlAkBMuGj7Q/0t5lriHLp9m/rMYq7yeYngr1KsPX/6iQT3Zcy3cATgKXk77cN75KzeA0I5/RqgNgn6FkEqehwvvDmQNnMokiWeXCVEhS8OvL2cZ2Zjz9JhG2l/mYwIDAQAB",
 	"version": "0.1",
 	"description": "Armsday authentication helper.",
 	"icons": {
