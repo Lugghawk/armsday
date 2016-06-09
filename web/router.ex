@@ -20,6 +20,12 @@ defmodule Armsday.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", Armsday do
+    pipe_through :api
+
+    get "/test/redemptions", DestinyController, :redemptions
+  end
+
   scope "/Destiny", Armsday do
     pipe_through :browser
 

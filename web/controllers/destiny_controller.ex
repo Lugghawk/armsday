@@ -13,4 +13,10 @@ defmodule Armsday.DestinyController do
     render conn, "armsday.html", armsday_orders: armsday_orders
   end
 
+  def redemptions(conn, _params) do
+    {:ok, file} = File.read "redemptions.json"
+    redemptions = Poison.Parser.parse!(file)
+    render conn, redemptions: redemptions
+  end
+
 end
