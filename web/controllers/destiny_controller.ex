@@ -4,7 +4,7 @@ defmodule Armsday.DestinyController do
 
   def account_lookup(conn, %{"membershipType" => type, "username" => name}) do
     membership_id = Destiny.membership_id(name) 
-    chars = membership_id |> Destiny.character_ids
+    chars = Destiny.character_ids membership_id
     render conn, "chars.html", chars: chars, membership_id: membership_id
   end
 
