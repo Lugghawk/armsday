@@ -50,7 +50,9 @@ window.R = R;
 // debug end
 
 var onMessageResponse = function (message, sender, sendResponse){
-  bungieApi(message).then(function(data){ sendResponse(data)});
+  bungieApi(message)
+    .then(function(data){ sendResponse({"status": "ok", "data": data})})
+    .catch(function(error) { sendResponse({"status": "error", "message": error}) });
   return true;
 }
 
