@@ -1,25 +1,37 @@
+var $ = require('jquery');
+
 if(typeof browser === 'undefined' && chrome) {
-  window.browser = chrome;
+	window.browser = chrome;
 }
 
-var privilegedBungieApiCall = function(url) {
-  return new Promise(function(fulfill, reject) {
-    browser.runtime.sendMessage("lmbhbnnolkjmjgfaieegmlliglfdnadn", {url: url}, function(data) {
-        if(data["status"] == "error") {
-          reject(data["message"])
-        } else {
-          fulfill(data["data"])
-        }
-    });
-  });
+let privilegedBungieApiCall = (url) => {
+	return new Promise((fulfill, reject) => {
+		browser.runtime.sendMessage("lmbhbnnolkjmjgfaieegmlliglfdnadn", {url: url}, (data) => {
+			if(data["status"] == "error") {
+				reject(data["message"])
+			} else {
+				fulfill(data["data"])
+			}
+		});
+	});
 }
 
-var bungieUser = function() {
-  return privilegedBungieApiCall("https://www.bungie.net/Platform/User/GetBungieNetUser/");
+let bungieUser = () => {
+	return privilegedBungieApiCall("https://www.bungie.net/Platform/User/GetBungieNetUser/");
 }
 
 bungieUser().then(function(user) {
-  console.log("Hello, " + user['Response']['psnId']);
+	console.log("Hello, " + user['Response']['psnId']);
 }).catch(function(message) {
-  console.log("Error during privilegedBungieApiCall: " + message);
+	console.log("Error during privilegedBungieApiCall: " + message);
 });
+
+let getRedemptions = () => {
+	return Promise.resolve($.ajax({
+		url: "api/test/redemptions"
+	}))
+}
+
+getRedemptions().then((data) => {
+	console.log(data)
+})
