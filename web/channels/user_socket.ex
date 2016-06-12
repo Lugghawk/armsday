@@ -2,7 +2,7 @@ defmodule Armsday.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", Armsday.RoomChannel
+  channel "armsday:*", Armsday.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

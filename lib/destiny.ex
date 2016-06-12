@@ -1,7 +1,7 @@
 defmodule Armsday.Destiny do
 
   def api_key do
-   Application.get_env(:armsday, Armsday.Endpoint)[:bungie_api_key]
+    Application.get_env(:armsday, Armsday.Endpoint)[:bungie_api_key]
   end
 
   def bungie_api_get(url) do
