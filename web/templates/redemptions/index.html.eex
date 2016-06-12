@@ -1,0 +1,7 @@
+<h1>Redemptions</h1>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+	require("web/static/js/redemptions");
+});
+</script>

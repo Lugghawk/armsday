@@ -5,6 +5,8 @@ if(typeof browser === 'undefined' && chrome) {
 	window.browser = chrome;
 }
 
+import PrivilegedBungie from "./privileged_bungie"
+
 let privilegedBungieApiCall = (url) => {
 	return new Promise((fulfill, reject) => {
 		browser.runtime.sendMessage("lmbhbnnolkjmjgfaieegmlliglfdnadn", {url: url}, (data) => {
@@ -15,10 +17,6 @@ let privilegedBungieApiCall = (url) => {
 			}
 		});
 	});
-}
-
-let bungieUser = () => {
-	return privilegedBungieApiCall("https://www.bungie.net/Platform/User/GetBungieNetUser/");
 }
 
 bungieUser().then(function(user) {

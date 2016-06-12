@@ -11,7 +11,7 @@ config :armsday, Armsday.Endpoint,
   root: Path.dirname(__DIR__),
   secret_key_base: "9PoSHQRk1MycJqZpHo0XfFcsHpOLDyroyiI8No5IvzLVZGg+P1zU4QCZCog7swto",
   render_errors: [accepts: ~w(html json)],
-  bungie_api_key: System.get_env("DESTINY_API_KEY"),
+  bungie_api_key: System.get_env("BUNGIE_API_KEY"),
   pubsub: [name: Armsday.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
