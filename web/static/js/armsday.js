@@ -51,11 +51,10 @@ let doHandleBars = () => {
 	
 	let template = Handlebars.compile($("#redemptions-template").html());
 	let area = $(".redemptions-area");
-	console.log(area);
 	area.append(template(redemptions));
 }
 getRedemptions().then((data) => {
-	window.redemptions = {"weapons":data};
+	window.redemptions = data;
 	doHandleBars();
 	return data;
 })
