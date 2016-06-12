@@ -27,6 +27,7 @@ Each character has up to 3 redemptions per week. These are the actual armsday we
 `privileged(https://www.bungie.net/Platform/Destiny/2/Account/#{membership_id}/Character/#{character_id}/Advisors/)`
 
 We only care about the armsday redemption data from this response, which is a hash stored at `data.armsDay.redemptions`. This hash will have up to three id to array pairings. Each id corresponds to a different weapon, and the array stored inside will have three elements: one for each roll that's available. Each element inside the array is a hash. We need a few things that are under the `item` key:
+
 1. the `itemHash`, which we can use for a lookup to get the name and image for the weapon (this will be the same for each element of the array, so we can use the first one).
 2. The `talentGridhash`, which we can use to look up the talent grid for this weapon. Again, this will be the same for all three.
 3. The nodes array. This is an array of hashes which tells us which talents are actually on the weapon, by means of two keys: the `nodeHash` and the `stepIndex`
