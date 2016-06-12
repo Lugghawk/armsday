@@ -8,7 +8,7 @@ Usable information is stored in `psnId`, and probably `xboxId` once we get aroun
 
 ## 2. Get their membership id
 
-`http(http://www.bungie.net/platform/Destiny/SearchDestinyPlayer/2/#{psn_id}/)`
+`http(https://www.bungie.net/platform/Destiny/SearchDestinyPlayer/2/#{psn_id}/)`
 
 The "2" in this query (and all future queries?) refers to PSN. We will need to change it for xbox. Returns an array of matching members, of which we can hopefully just take the first one, which would be an exact match? Either that, or we'll need to manually traverse the results to pick out the exact match. Then we take the membershipId out of that object.
 
@@ -16,7 +16,7 @@ The "2" in this query (and all future queries?) refers to PSN. We will need to c
 
 Each membership can have up to 3 characters. We can get them from querying the items api (for some reason?)
 
-`http(http://www.bungie.net/platform/Destiny/2/Account/#{membership_id}/Items/)`
+`http(https://www.bungie.net/platform/Destiny/2/Account/#{membership_id}/Items/)`
 
 `data.characters` is an array, from each we can get `characterBase.characterId` to end up with an array of character IDs that we'll need for the next step.
 
@@ -34,6 +34,6 @@ We only care about the armsday redemption data from this response, which is a ha
 
 ## 5. Get the talent grid
 
-`http(http://www.bungie.net/platform/Destiny/Manifest/TalentGrid/#{talent_grid_hash})`
+`http(https://www.bungie.net/platform/Destiny/Manifest/TalentGrid/#{talent_grid_hash})`
 
 We'll use this when iterating through all the nodes found in the last step. `data.talentGrid.nodes` contains a list of objects. Valuable information from this object: `nodeHash`, `steps`, `row`, and `column`. Nodehash corresponds to the nodeHash from the redemptions' nodes array. Row and column correspond to where they're displayed in the in-game grid, and thus will be valuable for when we're displaying them as well. Finally, we can look up the other half of the node information from the `steps` array, which contains a list of objects, each with a different `stepIndex`. By searching for the `stepIndex` from the redemption, we finally have an object containing the `nodeStepName` and `nodeStepDescription` that we want so badly.
