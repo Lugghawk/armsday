@@ -1,0 +1,31 @@
+.weapon-name{
+	color: #454545;
+	font-size: 21px;
+}
+
+.roll-number{
+	color: #999;
+	font-size: 18px;
+}
+
+.perk-name{
+	margin-right: 20px;
+}
+
+.perk-area{
+	border: 1px solid #999;
+	border-radius: 3px;
+	padding: 5px;
+	margin: 10px;
+	display: inline-block;
+}
+
+.perk {
+	border: 1px solid #000;
+	border-radius: 5px;
+}
+
+.weapon {
+	padding-bottom: 20px;
+}
+

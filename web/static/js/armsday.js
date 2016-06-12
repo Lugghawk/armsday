@@ -1,4 +1,5 @@
-var $ = require('jquery');
+window.$ = require('jquery');
+window._ = require('underscore');
 
 if(typeof browser === 'undefined' && chrome) {
 	window.browser = chrome;
@@ -31,7 +32,32 @@ let getRedemptions = () => {
 		url: "api/test/redemptions"
 	}))
 }
+let doHandleBars = () => {
+	Handlebars.registerPartial("roll", $("#roll-partial").html());
+	Handlebars.registerPartial("weapon", $("#weapon-partial").html());
+	Handlebars.registerPartial("perkColumn", $("#perk-column-partial").html());
+	Handlebars.registerPartial("perk", $("#perk-partial").html());
 
+	Handlebars.registerHelper("inc", (number) => {
+		return number+1;
+	});
+
+	Handlebars.registerHelper("perkColumns", (perks) => {
+		let columns = _.groupBy(perks, (perk) => {
+			return perk.column;
+		})
+		return _.toArray(columns);
+	});
+	
+	let template = Handlebars.compile($("#redemptions-template").html());
+	let area = $(".redemptions-area");
+	console.log(area);
+	area.append(template(redemptions));
+}
 getRedemptions().then((data) => {
-	console.log(data)
+	window.redemptions = {"weapons":data};
+	doHandleBars();
+	return data;
 })
+
+
