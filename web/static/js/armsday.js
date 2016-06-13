@@ -19,17 +19,12 @@ let privilegedBungieApiCall = (url) => {
 	});
 }
 
-bungieUser().then(function(user) {
-	console.log("Hello, " + user['Response']['psnId']);
-}).catch(function(message) {
-	console.log("Error during privilegedBungieApiCall: " + message);
-});
-
 let getRedemptions = () => {
 	return Promise.resolve($.ajax({
 		url: "api/test/redemptions"
 	}))
 }
+
 let doHandleBars = () => {
 	Handlebars.registerPartial("roll", $("#roll-partial").html());
 	Handlebars.registerPartial("weapon", $("#weapon-partial").html());
@@ -51,10 +46,10 @@ let doHandleBars = () => {
 	let area = $(".redemptions-area");
 	area.append(template(redemptions));
 }
-getRedemptions().then((data) => {
-	window.redemptions = data;
-	doHandleBars();
-	return data;
-})
+// getRedemptions().then((data) => {
+// 	window.redemptions = data;
+// 	doHandleBars();
+// 	return data;
+// })
 
 

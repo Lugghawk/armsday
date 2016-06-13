@@ -9,31 +9,16 @@ defmodule Armsday.Destiny do
   end
 
   def membership_id(username) do
-    body = bungie_api_get("http://www.bungie.net/platform/Destiny/SearchDestinyPlayer/2/#{URI.encode(username)}/").body
+    body = bungie_api_get("https://www.bungie.net/platform/Destiny/SearchDestinyPlayer/2/#{URI.encode(username)}/").body
 
     obj = Poison.Parser.parse!(body)
     obj["Response"] |> hd |> Map.get("membershipId")
   end
 
-  def armsday_advisor(membership_id, character_id) do
-    url = "https://www.bungie.net/Platform/Destiny/2/Account/#{URI.encode(membership_id)}/Character/#{URI.encode(character_id)}/Advisors/"
-    obj = bungie_api_get(url).body |> Poison.Parser.parse!
-    armsDay = obj["Response"] |> Map.get("data") |> Map.get("armsDay")
-    redemptions = armsDay |> Map.get("redemptions")
-    IO.inspect(redemptions)
-  end
-
   def character_ids(membership_id) do
-    body = bungie_api_get("http://www.bungie.net/platform/Destiny/2/Account/#{URI.encode(membership_id)}/Items/").body
+    body = bungie_api_get("https://www.bungie.net/platform/Destiny/2/Account/#{URI.encode(membership_id)}/Items/").body
     obj = Poison.Parser.parse!(body)
     obj["Response"]["data"]["characters"] |> Enum.map(fn x -> x["characterBase"]["characterId"] end)
-  end
-
-  def test_reformat_redemption do
-    {:ok, redemptions_raw} = File.read("/home/justinf/src/armsday/data/redemptions-character-2305843009349174275.json")
-    redemptions = Poison.Parser.parse!(redemptions_raw)
-
-    reformat_redemptions(redemptions)
   end
 
   def reformat_redemptions(redemptions) do
@@ -42,20 +27,25 @@ defmodule Armsday.Destiny do
     Enum.map(raw_weapons, &format_weapon/1)
   end
 
+  def test_reformat_redemption do
+    IO.puts("test_reformat_redemption")
+    {:ok, redemptions_raw} = File.read("/home/justinf/src/armsday/data/redemptions-character-2305843009349174275.json")
+    redemptions = Poison.Parser.parse!(redemptions_raw)
+
+    reformat_redemptions(redemptions)
+  end
+
   def get_item(item_hash) do
-    case item_hash do
-      "3275294460" -> %{:name => "Suros ARI-41"}
-      _ -> %{:name => "Item not found"}
-    end
+    body = bungie_api_get("https://www.bungie.net/platform/Destiny/Manifest/6/#{URI.encode(item_hash)}/").body
+    item = Poison.Parser.parse!(body)
+    %{
+      :name => item["Response"]["data"]["inventoryItem"]["itemName"]
+    }
   end
 
   def get_talent_grid(talent_grid_hash) do
-    case talent_grid_hash do
-      "4058565332" ->
-        {:ok, talentgrid_raw} = File.read("/home/justinf/src/armsday/data/ari-41-talentgrid.json")
-        Poison.Parser.parse!(talentgrid_raw)["Response"]["data"]["talentGrid"]["nodes"]
-      _ -> %{}
-    end
+    body = bungie_api_get("https://www.bungie.net/platform/Destiny/Manifest/TalentGrid/#{URI.encode(talent_grid_hash)}/").body
+    Poison.Parser.parse!(body)["Response"]["data"]["talentGrid"]["nodes"]
   end
 
   def format_weapon(raw_weapon) do

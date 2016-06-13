@@ -22,8 +22,8 @@ defmodule Armsday.RoomChannel do
       characters = Armsday.Destiny.character_ids(membership_id)
       IO.puts("#{username} is membership_id #{membership_id} and their characters are")
       IO.inspect(characters)
-      redemption = redemptions(membership_id, hd(characters), socket)
-      IO.inspect redemption
+      data = redemptions(membership_id, hd(characters), socket)
+      push socket, "redemptions", %{redemptions: data}
     end)
     socket = assign(socket, :replyto, child_pid)
     socket
@@ -34,7 +34,7 @@ defmodule Armsday.RoomChannel do
   end
 
   defp redemptions(membership_id, character_id, socket) do
-    redemptions = privileged_bungie("https://www.bungie.net/Platform/Destiny/2/Account/#{URI.encode(membership_id)}/Character/#{URI.encode(character_id)}/Advisors/", socket)["Response"]["data"]["armsDay"]["redemptions"] |> Map.values
+    redemptions = privileged_bungie("https://www.bungie.net/Platform/Destiny/2/Account/#{URI.encode(membership_id)}/Character/#{URI.encode(character_id)}/Advisors/", socket) |> Armsday.Destiny.reformat_redemptions
   end
 
   defp privileged_bungie(url, socket) do

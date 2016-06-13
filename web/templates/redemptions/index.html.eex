@@ -1,5 +1,51 @@
 <h1>Redemptions</h1>
 
+<div class="redemptions-area">
+</div>
+
+<script id="weapon-partial" type="text/x-handlebars-template">
+<div class="weapon-info">
+    <div class="weapon-name">{{weapon_name}}</div>
+  </div>
+  <div class="rolls">
+    {{#each rolls}}
+      <div class="roll-number">Roll {{inc @index}}</div>
+     {{> roll}}
+    {{/each}}
+  </div>
+</script>
+
+<script id="roll-partial" type="text/x-handlebars-template">
+<div class="perk-area">
+    {{#each (perkColumns this)}}
+      {{> perkColumn}}
+    {{/each}}
+  </div> 
+</script>
+
+<script id="perk-column-partial" type="text/x-handlebars-template">
+<div class="perk-column">
+  {{#each this}}
+    {{> perk}}
+  {{/each}}
+  </div>
+</script>
+
+<script id="perk-partial" type="text/x-handlebars-template">
+<div class="perk" title="{{description}}">
+  <div class="perk-name" >{{name}}</div>
+</div>
+</script>
+
+<script id="redemptions-template" type="text/x-handlebars-template">
+{{#each this}}
+  <div class="weapon">
+    {{> weapon}}
+  </div>
+  {{/each}}
+</script>
+
+
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
 	require("web/static/js/redemptions");

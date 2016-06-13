@@ -12,10 +12,37 @@ channel.on("privileged_bungie", payload => {
   });
 });
 
+channel.on("redemptions", payload => {
+  console.log("Received redemptions", payload["redemptions"]);
+  window.redemptions = payload["redemptions"];
+  doHandleBars();
+});
+
 channel.join()
   .receive("error", resp => { console.log("Unable to join", resp) })
   .receive("ok", resp => {
     console.log("Joined successfully", resp);
     channel.push("redemptions_start");
-    //channel.push("privileged_bungie_response", {url: "hello", response: "world"})
 })
+
+let doHandleBars = () => {
+  Handlebars.registerPartial("roll", $("#roll-partial").html());
+  Handlebars.registerPartial("weapon", $("#weapon-partial").html());
+  Handlebars.registerPartial("perkColumn", $("#perk-column-partial").html());
+  Handlebars.registerPartial("perk", $("#perk-partial").html());
+
+  Handlebars.registerHelper("inc", (number) => {
+    return number+1;
+  });
+
+  Handlebars.registerHelper("perkColumns", (perks) => {
+    let columns = _.groupBy(perks, (perk) => {
+      return perk.column;
+    })
+    return _.toArray(columns);
+  });
+
+  let template = Handlebars.compile($("#redemptions-template").html());
+  let area = $(".redemptions-area");
+  area.append(template(redemptions));
+}
