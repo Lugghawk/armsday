@@ -9,6 +9,15 @@ body{
 	height:100%;
 }
 
+.container {
+	width: 1200px;
+	margin: auto;
+}
+
+.header {
+	margin-bottom: 30px;
+}
+
 .weapon-name{
 	color: #999;
 	font-size: 21px;
@@ -42,6 +51,7 @@ body{
 .perk-column{
 	float:left;
 	margin: 20px;
+	min-width: 170px;
 }
 
 
