@@ -22,7 +22,7 @@ defmodule Armsday.RoomChannel do
       characters = Armsday.Destiny.character_ids(membership_id)
       IO.puts("#{username} is membership_id #{membership_id} and their characters are")
       IO.inspect(characters)
-      data = redemptions(membership_id, hd(characters), socket)
+      data = Enum.map(characters, fn x -> redemptions(membership_id, x, socket) end) |> List.flatten
       push socket, "redemptions", %{redemptions: data}
     end)
     socket = assign(socket, :replyto, child_pid)
