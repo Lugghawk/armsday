@@ -60,7 +60,7 @@ defmodule Armsday.Destiny do
 
     item = get_item(item_hash)
     talent_grid_nodes = get_talent_grid(talent_grid_hash)
-
+    IO.inspect talent_grid_nodes
     hydrated_rolls = Enum.map(rolls, &(hydrated_nodes(&1, talent_grid_nodes)))
 
     %{
@@ -81,7 +81,8 @@ defmodule Armsday.Destiny do
       :row => data["row"],
       :column => data["column"],
       :name => step["nodeStepName"],
-      :description => step["nodeStepDescription"]
+      :description => step["nodeStepDescription"],
+      :icon => step["icon"]
     }
   end
 
