@@ -90,7 +90,8 @@ defmodule Armsday.Destiny do
       %{
         :item_hash => x["item"]["itemHash"],
         :talent_grid_hash => x["item"]["talentGridHash"],
-        :nodes => Enum.map(x["item"]["nodes"], &reformat_node/1)
+        :nodes => Enum.map(x["item"]["nodes"], &reformat_node/1) |>
+                    Enum.filter(fn x -> x[:hidden] == false end)
       }
     end)
   end
@@ -98,7 +99,8 @@ defmodule Armsday.Destiny do
   def reformat_node(raw_node) do
     %{
       :node_hash => raw_node["nodeHash"],
-      :step_index => raw_node["stepIndex"]
+      :step_index => raw_node["stepIndex"],
+      :hidden => raw_node["hidden"]
     }
   end
 
