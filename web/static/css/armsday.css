@@ -33,6 +33,8 @@ body{
 .perk-name{
 	margin-right: 20px;
 	font-size: 20px;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .perk-area{
@@ -47,13 +49,23 @@ body{
 	border: 1px solid #000;
 	border-radius: 5px;
 	padding: 5px;
-	margin: 2px;
+	margin: 10px;
+	min-height: 40px;
 	color: #888;
+	vertical-align: middle;
+}
+
+.perk-icon {
+	max-width: 32px;
+	max-height: 32px;
+	margin-right: 10px;
+	vertical-align: middle;
+	display: inline-block;
 }
 
 .perk-column{
 	float:left;
-	margin: 20px;
+	margin: 0px;
 	min-width: 170px;
 }
 
