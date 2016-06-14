@@ -3,6 +3,8 @@
 <div class="redemptions-area">
 </div>
 
+<div id="loader"></div>
+
 <script id="weapon-partial" type="text/x-handlebars-template">
 <div class="weapon-info">
     <div class="weapon-name">{{weapon_name}}</div>
