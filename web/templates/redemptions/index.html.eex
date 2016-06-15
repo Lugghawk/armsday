@@ -4,6 +4,10 @@
 </div>
 
 <div id="loader"></div>
+<div class="modal-overlay hidden"></div>
+<div class="modal-content hidden">
+  <div class="modal-text">Please install the Privileged bungie api extension</div>
+</div>
 
 <script id="weapon-partial" type="text/x-handlebars-template">
 <div class="weapon-info">
@@ -46,6 +50,7 @@
   </div>
   {{/each}}
 </script>
+
 
 
 <script>
