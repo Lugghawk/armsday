@@ -9,7 +9,7 @@ import PrivilegedBungie from "./privileged_bungie"
 
 let privilegedBungieApiCall = (url) => {
 	return new Promise((fulfill, reject) => {
-		browser.runtime.sendMessage("lmbhbnnolkjmjgfaieegmlliglfdnadn", {url: url}, (data) => {
+		browser.runtime.sendMessage("lmbhbnnolkjmjgfaieegmlliglfdnadn", {type: 'bungieapi', apiCall: {url: url}}, (data) => {
 			if(data["status"] == "error") {
 				reject(data["message"])
 			} else {

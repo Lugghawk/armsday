@@ -50,9 +50,14 @@ window.R = R;
 // debug end
 
 var onMessageResponse = function (message, sender, sendResponse){
-  bungieApi(message)
-    .then(function(data){ sendResponse({"status": "ok", "data": data})})
-    .catch(function(error) { sendResponse({"status": "error", "message": error}) });
+	if (message.type === 'installCheck'){
+		sendResponse(true);
+	}
+	if (message.type === 'bungieapi'){
+	  bungieApi(message.apiCall)
+	    .then(function(data){ sendResponse({"status": "ok", "data": data})})
+	    .catch(function(error) { sendResponse({"status": "error", "message": error}) });
+	}
   return true;
 }
 

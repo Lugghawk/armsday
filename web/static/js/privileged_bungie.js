@@ -1,7 +1,7 @@
 let PrivilegedBungie = {
   apiCall: function(url) {
     return new Promise(function(fulfill, reject) {
-      browser.runtime.sendMessage("lmbhbnnolkjmjgfaieegmlliglfdnadn", {url: url}, function(data) {
+      browser.runtime.sendMessage("lmbhbnnolkjmjgfaieegmlliglfdnadn", {type:"bungieapi", apiCall: {url: url}}, function(data) {
           if(data["status"] == "error") {
             reject(data["message"])
           } else {
@@ -9,6 +9,14 @@ let PrivilegedBungie = {
           }
       });
     });
+  },
+  isInstalled: function() {
+	return new Promise(function(fulfill, reject) {
+		browser.runtime.sendMessage("lmbhbnnolkjmjgfaieegmlliglfdnadn", {type: "installCheck"}, function(isInstalled){
+			if (typeof isInstalled === 'undefined' || !isInstalled) reject();
+			fulfill();
+		});
+	});
   }
 }
 
