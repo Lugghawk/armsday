@@ -1,10 +1,6 @@
 window.$ = require('jquery');
 window._ = require('underscore');
 
-if(typeof browser === 'undefined' && chrome) {
-	window.browser = chrome;
-}
-
 import PrivilegedBungie from "./privileged_bungie"
 
 let privilegedBungieApiCall = (url) => {

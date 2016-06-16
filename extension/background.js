@@ -1,9 +1,13 @@
 var R = require('ramda');
 var $ = require('jquery');
+var extensionPlatform = null;
 
-if(typeof browser === 'undefined' && chrome) {
-  browser = chrome;
+if(typeof window.chrome === 'object') {
+  extensionPlatform = window.chrome;
+} else {
+  extensionPlatform = window.browser;
 }
+
 
 var bungledCookie = function() {
   return new Promise(function(fulfill, reject) {
@@ -32,7 +36,7 @@ var bungieApi = function(apiRequest) {
 
 var getBungieCookies = function() {
   return new Promise(function(fulfill, reject) {
-    browser.cookies.getAll({
+    extensionPlatform.cookies.getAll({
       "domain": ".bungie.net"
     }, function(cookies){
       fulfill(cookies);
@@ -61,5 +65,5 @@ var onMessageResponse = function (message, sender, sendResponse){
   return true;
 }
 
-browser.runtime.onMessage.addListener(onMessageResponse);
-browser.runtime.onMessageExternal.addListener(onMessageResponse);
+extensionPlatform.runtime.onMessage.addListener(onMessageResponse);
+extensionPlatform.runtime.onMessageExternal.addListener(onMessageResponse);

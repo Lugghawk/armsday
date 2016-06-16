@@ -1,0 +1,22 @@
+{
+	"manifest_version": 2,
+	"applications": {
+		"gecko": {
+			"id": "bungie_proxy@armsday.org"
+		}
+	},
+	"name": "Bungie Privileged API Proxy",
+	"version": "0.1",
+	"description": "Makes authenticated API calls to bungie so that you don't have to expose your username and password",
+	"background": {
+		"scripts": ["bundle.js"]
+	},
+	"permissions": [
+		"storage",
+		"*://*.bungie.net/*",
+		"http://localhost:4000/",
+		"*://*.armsday.org/*",
+		"cookies"
+	],
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
