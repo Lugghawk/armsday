@@ -1,44 +1,26 @@
 {
 	"manifest_version": 2,
-	"name": "ArmsDay",
+	"name": "Bungie privileged API proxy",
 	"key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAq97degSq9hfJM0hnH8BUPfLHcY+PZQh32LOEdvjxxNNLKWZ9/IwmlGSnvLK5dD8H2TQiAakxLSutRfTPnOJGFhggR0Y75DAZDpD4Qgjl2tirJm7eQuPCahUx1DCL2+//ydgJ2qqKBvQLPfQM9UR73HscO4JMGKdteBUl8tzRcFrCccIuZvvCvQn71ouHW4Ql2y4tqCyEP4kS2Ooix5OwaWwzHJlAkBMuGj7Q/0t5lriHLp9m/rMYq7yeYngr1KsPX/6iQT3Zcy3cATgKXk77cN75KzeA0I5/RqgNgn6FkEqehwvvDmQNnMokiWeXCVEhS8OvL2cZ2Zjz9JhG2l/mYwIDAQAB",
 	"version": "0.1",
-	"description": "Armsday authentication helper.",
+	"description": "Makes requests to the bungie API and sends the results to sites that you trust.",
 	"icons": {
 	},
-	"short_name": "Armsday",
-	"background": {
-	},
-	"content_scripts": [{
-		"matches": [
-			"http://localhost:4000/*",
-			"*://*.bungie.net/*"
-			],
-		"js": [
-			"content-script.js"
-			]
-
-	}],
 	"externally_connectable": {
 		"matches": [
-			"http://localhost:4000/*",
-			"*://*.bungie.net/*"
+			"*://*.armsday.org/*",
+			"http://alpha.armsday.org:4000/*"
 			]
 	},
 	"background": {
-		"scripts": [
-			"bundle.js"
-			]
+		"scripts": [ "bundle.js" ]
 	},
 	"permissions": [
 		"storage",
-	"*://*.bungie.net/*",
-	"http://localhost:4000/",
-	"cookies"
+		"*://*.bungie.net/*",
+		"*://*.armsday.org/*",
+		"http://alpha.armsday.org:4000/*",
+		"cookies"
 		],
-	"browser_action": {
-	},
-	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-	"incognito": "split",
-	"offline_enabled": false
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
