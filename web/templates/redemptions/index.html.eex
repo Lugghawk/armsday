@@ -11,7 +11,7 @@
 
 <script id="weapon-partial" type="text/x-handlebars-template">
 <div class="weapon-info">
-    <div class="weapon-name">{{weapon_name}}</div>
+    <div class="weapon-name">{{weapon_name}} ({{weapon_type}})</div>
   </div>
   <div class="rolls">
     {{#each rolls}}

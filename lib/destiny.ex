@@ -39,7 +39,8 @@ defmodule Armsday.Destiny do
     body = bungie_api_get("https://www.bungie.net/platform/Destiny/Manifest/6/#{URI.encode(item_hash)}/").body
     item = Poison.Parser.parse!(body)
     %{
-      :name => item["Response"]["data"]["inventoryItem"]["itemName"]
+      :name => item["Response"]["data"]["inventoryItem"]["itemName"],
+      :type => item["Response"]["data"]["inventoryItem"]["itemTypeName"]
     }
   end
 
@@ -61,9 +62,9 @@ defmodule Armsday.Destiny do
     item = get_item(item_hash)
     talent_grid_nodes = get_talent_grid(talent_grid_hash)
     hydrated_rolls = Enum.map(rolls, &(hydrated_nodes(&1, talent_grid_nodes)))
-
     %{
       :weapon_name => item[:name],
+      :weapon_type => item[:type],
       :rolls => hydrated_rolls
     }
   end
