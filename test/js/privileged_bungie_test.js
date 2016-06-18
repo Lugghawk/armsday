@@ -23,7 +23,7 @@ describe("PrivilegedBungie", function() {
       mock.restore();
     });
 
-    it("rejects the extension could not be reached", function() {
+    it("rejects when the extension could not be reached", function() {
       chain.callsArgWith(2, undefined);
 
       let promise = PrivilegedBungie.isInstalled();
