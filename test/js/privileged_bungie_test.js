@@ -24,7 +24,7 @@ describe("PrivilegedBungie", function() {
     });
 
     it("rejects when the extension could not be reached", function() {
-      chain.callsArgWith(2, undefined);
+      chain.callsArg(2);
 
       let promise = PrivilegedBungie.isInstalled();
       return expect(promise).to.eventually.be.rejected;
