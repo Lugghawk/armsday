@@ -73,24 +73,27 @@ body{
 
 .perk-area{
 	border: 1px solid #999;
-	border-radius: 3px;
-	padding: 1px;
+	border-radius: 10px;
+	padding: 5px 10px;
 	margin: 5px;
     width: 100%;
 	display: flex;
     justify-content: space-between;
 }
 
-.perk {
-	border: 1px solid #000;
-	border-radius: 5px;
-	padding: 5px;
-	margin: 10px;
-	min-height: 40px;
-	color: #888;
-	vertical-align: middle;
+.perk{
+    border: 1px solid #000;
+    padding: 4px;
+    margin: 5px 2px;
+    min-height: 40px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    -webkit-box-shadow: 7px 9px 16px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 7px 9px 16px 2px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 6px 6px rgba(0,0,0,0.2);
 }
-
 .perk-icon {
 	max-width: 32px;
 	max-height: 32px;
