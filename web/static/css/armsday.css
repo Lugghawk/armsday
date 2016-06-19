@@ -76,7 +76,9 @@ body{
 	border-radius: 3px;
 	padding: 1px;
 	margin: 5px;
-	display: inline-block;
+    width: 100%;
+	display: flex;
+    justify-content: space-between;
 }
 
 .perk {
@@ -100,10 +102,12 @@ body{
 .perk-column{
 	float:left;
 	margin: 0px;
-	min-width: 170px;
+	min-width: 230px;
 }
 
-
+.roll-area {
+    margin: 15px 0px;
+}
 
 .weapon {
 	padding-bottom: 20px;

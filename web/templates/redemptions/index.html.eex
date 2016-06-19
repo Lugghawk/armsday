@@ -15,8 +15,10 @@
   </div>
   <div class="rolls">
     {{#each rolls}}
-      <div class="roll-number">Roll {{inc @index}}</div>
-     {{> roll}}
+      <div class="roll-area">
+        <div class="roll-number">Roll {{inc @index}}</div>
+        {{> roll}}
+       </div>
     {{/each}}
   </div>
 </script>
