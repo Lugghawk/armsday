@@ -12,8 +12,7 @@ global.browser.runtime.sendMessage = function(){};
 
 describe("PrivilegedBungie", function() {
   describe("isInstalled", function() {
-    var mock = null;
-    var chain = null;
+    var mock, chain;
     beforeEach(function() {
       mock = sinon.mock(global.browser.runtime);
       chain = mock.expects("sendMessage").withArgs("lmbhbnnolkjmjgfaieegmlliglfdnadn", {type: "installCheck"}).once()
@@ -27,14 +26,47 @@ describe("PrivilegedBungie", function() {
       chain.callsArg(2);
 
       let promise = PrivilegedBungie.isInstalled();
-      return expect(promise).to.eventually.be.rejected;
+      return expect(promise).to.be.rejectedWith(undefined);
     });
 
     it("fulfills when the extension responds", function() {
       chain.callsArgWith(2, true);
 
       let promise = PrivilegedBungie.isInstalled();
-      return expect(promise).to.eventually.be.fulfilled;
+      return expect(promise).to.be.fulfilled;
+    });
+  });
+
+  describe("apiCall", function() {
+    var mock, chain;
+    beforeEach(function() {
+      mock = sinon.mock(global.browser.runtime);
+      chain = mock.expects("sendMessage").withArgs("lmbhbnnolkjmjgfaieegmlliglfdnadn", {type: "bungieapi", apiCall: {url: "say_hello"}}).once()
+    });
+
+    afterEach(function() {
+      mock.restore();
+    });
+
+    it("is fulfilled with data when the api call is successful", function() {
+      chain.callsArgWith(2, {"status": "success", "data": {"ErrorCode": 1, "Response": "hello"}});
+
+      let promise = PrivilegedBungie.apiCall("say_hello");
+      return expect(promise).to.become({"ErrorCode": 1, "Response": "hello"});
+    });
+
+    it("is rejected with an error message when the api call fails", function() {
+      chain.callsArgWith(2, {"status": "error", "message": "nope"});
+
+      let promise = PrivilegedBungie.apiCall("say_hello");
+      return expect(promise).to.be.rejectedWith("nope");
+    });
+
+    it("is rejected with an error message when bungie responds but the response is an error", function() {
+      chain.callsArgWith(2, {"status": "success", "data": {"ErrorCode": 2101, "Message": "bungie nope"}});
+
+      let promise = PrivilegedBungie.apiCall("say_hello");
+      return expect(promise).to.be.rejectedWith("bungie nope");
     });
   });
 });

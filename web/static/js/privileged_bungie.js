@@ -1,11 +1,16 @@
 let PrivilegedBungie = {
   apiCall: function(url) {
     return new Promise(function(fulfill, reject) {
-      browser.runtime.sendMessage("lmbhbnnolkjmjgfaieegmlliglfdnadn", {type:"bungieapi", apiCall: {url: url}}, function(data) {
-          if(data["status"] == "error") {
-            reject(data["message"])
+      browser.runtime.sendMessage("lmbhbnnolkjmjgfaieegmlliglfdnadn", {type:"bungieapi", apiCall: {url: url}}, function(payload) {
+          if(payload["status"] == "error") {
+            reject(payload["message"])
           } else {
-            fulfill(data["data"])
+            let data = payload["data"]
+            if(data["ErrorCode"] === 1) {
+              fulfill(data)
+            } else {
+              reject(data["Message"])
+            }
           }
       });
     });
@@ -13,8 +18,11 @@ let PrivilegedBungie = {
   isInstalled: function() {
 	return new Promise(function(fulfill, reject) {
 		browser.runtime.sendMessage("lmbhbnnolkjmjgfaieegmlliglfdnadn", {type: "installCheck"}, function(isInstalled){
-			if (typeof isInstalled === 'undefined' || !isInstalled) reject();
-			fulfill();
+			if (typeof isInstalled === 'undefined' || !isInstalled) {
+        reject();
+      } else {
+        fulfill();
+      }
 		});
 	});
   }
