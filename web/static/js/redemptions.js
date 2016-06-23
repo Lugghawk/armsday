@@ -68,6 +68,7 @@ channel.on("redemptions", payload => {
     window.redemptions = payload["redemptions"];
     doHandleBars();
     window.spinner.stop();
+    addPopovers();
 });
 
 let joinChannel = () => {
@@ -116,7 +117,6 @@ let doHandleBars = () => {
     let template = Handlebars.compile($("#redemptions-template").html());
     let area = $(".redemptions-area");
     area.append(template(redemptions));
-    addPopovers();
 }
 
 let addPopovers = () => {
@@ -130,11 +130,12 @@ let addPopovers = () => {
             remove: true,
             tetherOptions: {
                 attachment: 'bottom center',
-            targetAttachment: 'top center',
-            constraints: [{
-                to: 'window',
-            attachment: 'both'
-            }]
+                targetAttachment: 'top center',
+                offset: "10px 0",
+                constraints: [{
+                    to: 'window',
+                    attachment: 'both'
+                }]
             },
         });
     })

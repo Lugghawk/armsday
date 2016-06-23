@@ -9,6 +9,7 @@
   <div class="modal-text">Please install the Privileged bungie api extension</div>
 </div>
 
+
 <script id="weapon-partial" type="text/x-handlebars-template">
 <div class="weapon-info">
     <div class="weapon-name">{{weapon_name}} ({{weapon_type}})</div>
@@ -57,6 +58,6 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
-	require("web/static/js/redemptions");
-});
+    require("web/static/js/redemptions");
+    });
 </script>
