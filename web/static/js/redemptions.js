@@ -125,7 +125,7 @@ let addPopovers = () => {
         new Drop({
             target: this,
             content: this.getAttribute('data-description'),
-            openDelay: 300,
+            openDelay: 150,
             openOn: 'hover',
             remove: true,
             tetherOptions: {
