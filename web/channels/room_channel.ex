@@ -16,7 +16,7 @@ defmodule Armsday.RoomChannel do
   end
 
   defp handle_redemptions(socket) do
-    child_pid = spawn_link(fn ->
+    child_pid = spawn(fn ->
       username = psn_id(socket)
       membership_id = Armsday.Destiny.membership_id(username)
       characters = Armsday.Destiny.character_ids(membership_id)
