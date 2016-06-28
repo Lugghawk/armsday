@@ -13,8 +13,10 @@ use Mix.Config
 # which you typically run after static files are built.
 config :armsday, Armsday.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/manifest.json"
+  # eventually need to configure this with chef
+  url: [host: "beta.armsday.org", port: 80],
+  cache_static_manifest: "priv/static/manifest.json",
+  check_origin: ["//armsday.org", "//beta.armsday.org", "//alpha.armsday.org:4000"]
 
 # Do not print debug messages in production
 config :logger, level: :info
