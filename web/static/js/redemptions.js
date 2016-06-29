@@ -37,7 +37,6 @@ insertSpinner();
 var channel = socket.channel("armsday:redemptions", {})
 
 channel.on("privileged_bungie", payload => {
-	console.log("Recieved a request for a privileged_bungie API call to: " + payload["url"]);
 	PrivilegedBungie.apiCall(payload["url"]).then(resp => {
 		channel.push("privileged_bungie_response", {
 			url: payload["url"],
@@ -47,7 +46,6 @@ channel.on("privileged_bungie", payload => {
 });
 
 channel.on("redemptions", payload => {
-	console.log("Received redemptions", payload["redemptions"]);
 	window.redemptions = payload["redemptions"];
 	doHandleBars();
 	window.spinner.stop();
@@ -60,7 +58,6 @@ let joinChannel = () => {
 			console.log("Unable to join", resp)
 		})
 	.receive("ok", resp => {
-		console.log("Joined successfully", resp);
 		channel.push("redemptions_start");
 		window.spinner.spin(getSpinnerElement());
 	})
