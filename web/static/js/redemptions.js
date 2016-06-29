@@ -1,6 +1,25 @@
 import socket from "./socket"
 import PrivilegedBungie from "./privileged_bungie"
 
+window.$ = require('jquery');
+window._ = require('underscore');
+
+if(typeof browser === 'undefined' && chrome) {
+	window.browser = chrome;
+}
+
+let privilegedBungieApiCall = (url) => {
+	return new Promise((fulfill, reject) => {
+		browser.runtime.sendMessage("lmbhbnnolkjmjgfaieegmlliglfdnadn", {type: 'bungieapi', apiCall: {url: url}}, (data) => {
+			if(data["status"] == "error") {
+				reject(data["message"])
+			} else {
+				fulfill(data["data"])
+			}
+		});
+	});
+};
+
 let insertSpinner = () => {
 	let opts = {
 		lines: 5, // the number of lines to draw
