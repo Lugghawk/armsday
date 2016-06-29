@@ -120,7 +120,6 @@ let doHandleBars = () => {
 }
 
 let addPopovers = () => {
-    console.log("adding popovers");
     $('.perk').each(function(idx, perk) {
         new Drop({
             target: this,
