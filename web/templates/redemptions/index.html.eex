@@ -42,7 +42,7 @@
 
 <script id="perk-partial" type="text/x-handlebars-template">
 <div class="perk" data-description="{{description}}">
-  <img class="perk-icon" src="http://www.bungie.net{{icon}}"/><div class="perk-name" >{{name}}</div>
+  <img class="perk-icon" src="https://www.bungie.net{{icon}}"/><div class="perk-name" >{{name}}</div>
 </div>
 </script>
 
