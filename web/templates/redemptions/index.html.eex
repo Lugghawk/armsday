@@ -13,7 +13,10 @@
 </div>
 
 <div class="ext-not-installed-overlay-content modal-content hidden">
-  <div class="modal-text">Please install the Privileged bungie api extension</div>
+  <div class="modal-text">
+    Please install the <a href="https://chrome.google.com/webstore/detail/bungie-privileged-api-pro/lmbhbnnolkjmjgfaieegmlliglfdnadn">Privileged bungie api extension</a>. Then refresh this page.
+    Note: Only approved testers can see the extension right now.
+  </div>
 </div>
 
 
