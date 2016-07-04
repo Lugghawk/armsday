@@ -51,9 +51,12 @@ channel.on("privileged_bungie", payload => {
         });
     }, error => {
         window.spinner.stop();
-        if (error === "noauth"){
+        if (error === "noauth" || error === "Bungled cookie not found"){
             showNotLoggedIntoBungieOverlay();
-        }
+        }else{
+	    showUnexpectedErrorOverlay();
+	    console.error(error);
+	}
     });
 });
 
@@ -73,6 +76,12 @@ let joinChannel = () => {
         channel.push("redemptions_start");
         window.spinner.spin(getSpinnerElement());
     })
+}
+
+//Todo: remove code duplication here
+let showUnexpectedErrorOverlay = () => {
+    $(".modal-overlay").removeClass("hidden");
+    $(".modal-error-overlay").removeClass("hidden);
 }
 
 let showNotLoggedIntoBungieOverlay = () => {

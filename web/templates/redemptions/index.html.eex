@@ -6,6 +6,9 @@
 <div id="loader"></div>
 <div class="modal-overlay hidden"></div>
 <div class="bungie-noauth-overlay-content modal-content hidden">
+  <div class="modal-text">An unexpected error has occured, please check the console log.</div>
+</div>
+<div class="bungie-noauth-overlay-content modal-content hidden">
   <div class="modal-text">Please login to <a href="https://bungie.net" target="_blank">bungie.net</a>. And then refresh this page.</div>
 </div>
 
@@ -33,7 +36,7 @@
     {{#each (perkColumns this)}}
       {{> perkColumn}}
     {{/each}}
-  </div> 
+  </div>
 </script>
 
 <script id="perk-column-partial" type="text/x-handlebars-template">
