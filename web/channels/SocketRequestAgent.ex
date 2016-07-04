@@ -1,6 +1,6 @@
 defmodule SocketRequestAgent do
 
-  def start do
+  def start_link do
     Agent.start(fn -> Map.new end, name: __MODULE__)
   end
 

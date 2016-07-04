@@ -11,6 +11,9 @@ defmodule Armsday do
       supervisor(Armsday.Endpoint, []),
       # Start the Ecto repository
       supervisor(Armsday.Repo, []),
+
+      # Start the SocketRequestAgent
+      worker(SocketRequestAgent, []),
       # Here you could define other workers and supervisors as children
       # worker(Armsday.Worker, [arg1, arg2, arg3]),
     ]
