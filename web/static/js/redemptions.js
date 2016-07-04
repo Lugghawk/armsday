@@ -81,7 +81,7 @@ let joinChannel = () => {
 //Todo: remove code duplication here
 let showUnexpectedErrorOverlay = () => {
     $(".modal-overlay").removeClass("hidden");
-    $(".modal-error-overlay").removeClass("hidden);
+    $(".modal-error-overlay").removeClass("hidden");
 }
 
 let showNotLoggedIntoBungieOverlay = () => {
