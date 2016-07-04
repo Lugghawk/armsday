@@ -8,18 +8,6 @@ if(typeof browser === 'undefined' && chrome) {
     window.browser = chrome;
 }
 
-let privilegedBungieApiCall = (url) => {
-    return new Promise((fulfill, reject) => {
-        browser.runtime.sendMessage("lmbhbnnolkjmjgfaieegmlliglfdnadn", {type: 'bungieapi', apiCall: {url: url}}, (data) => {
-            if(data["status"] == "error") {
-                reject(data["message"])
-            } else {
-                fulfill(data["data"])
-            }
-        });
-    });
-};
-
 let insertSpinner = () => {
     let opts = {
         lines: 5, // the number of lines to draw
@@ -61,6 +49,11 @@ channel.on("privileged_bungie", payload => {
             url: payload["url"],
             response: resp
         });
+    }, error => {
+        window.spinner.stop();
+        if (error === "noauth"){
+            showNotLoggedIntoBungieOverlay();
+        }
     });
 });
 
@@ -72,7 +65,6 @@ channel.on("redemptions", payload => {
 });
 
 let joinChannel = () => {
-
     channel.join()
         .receive("error", resp => {
             console.log("Unable to join", resp)
@@ -83,9 +75,14 @@ let joinChannel = () => {
     })
 }
 
+let showNotLoggedIntoBungieOverlay = () => {
+    $(".modal-overlay").removeClass("hidden");
+    $(".bungie-noauth-overlay-content").removeClass("hidden");
+}
+
 let showExtensionInstallerOverlay = () => {
     $(".modal-overlay").removeClass("hidden");
-    $(".modal-content").removeClass("hidden");
+    $(".ext-not-installed-overlay-content").removeClass("hidden");
 }
 
 let isExtensionInstalled = () => {

@@ -5,7 +5,11 @@
 
 <div id="loader"></div>
 <div class="modal-overlay hidden"></div>
-<div class="modal-content hidden">
+<div class="bungie-noauth-overlay-content modal-content hidden">
+  <div class="modal-text">Please login to <a href="https://bungie.net" target="_blank">bungie.net</a>. And then refresh this page.</div>
+</div>
+
+<div class="ext-not-installed-overlay-content modal-content hidden">
   <div class="modal-text">Please install the Privileged bungie api extension</div>
 </div>
 
