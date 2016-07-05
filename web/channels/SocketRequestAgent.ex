@@ -11,8 +11,8 @@ defmodule SocketRequestAgent do
   def get_pid_for_request(url) do
     Agent.get_and_update(__MODULE__, fn state ->
       pid = Map.get(state, url)
-      Map.delete(state, url)
-      {pid, state}
+      new_state = Map.delete(state, url)
+      {pid, new_state}
     end)
   end
 
