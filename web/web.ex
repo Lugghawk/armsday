@@ -16,23 +16,11 @@ defmodule Armsday.Web do
   below.
   """
 
-  def model do
-    quote do
-      use Ecto.Schema
-
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query, only: [from: 1, from: 2]
-    end
-  end
-
   def controller do
     quote do
       use Phoenix.Controller
 
       alias Armsday.Repo
-      import Ecto
-      import Ecto.Query, only: [from: 1, from: 2]
 
       import Armsday.Router.Helpers
       import Armsday.Gettext
@@ -66,8 +54,6 @@ defmodule Armsday.Web do
       use Phoenix.Channel
 
       alias Armsday.Repo
-      import Ecto
-      import Ecto.Query, only: [from: 1, from: 2]
       import Armsday.Gettext
     end
   end

@@ -1,3 +1,3 @@
-defmodule Armsday.Repo do
-  use Ecto.Repo, otp_app: :armsday
-end
+#defmodule Armsday.Repo do
+#  use Ecto.Repo, otp_app: :armsday
+#end

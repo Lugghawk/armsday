@@ -19,7 +19,7 @@ defmodule Armsday.Mixfile do
   def application do
     [mod: {Armsday, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :httpotion, :poison]]
+                    :postgrex, :httpotion, :poison]]
   end
 
   # Specifies which paths to compile per environment.
@@ -31,25 +31,19 @@ defmodule Armsday.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [{:phoenix, "~> 1.2.0"},
-     {:postgrex, ">= 0.0.0"},
+     {:postgrex, ">= 0.11.2"},
      {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.0-rc"},
-     {:phoenix_html, "~> 2.4"},
+     {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
-     {:httpotion, "~> 2.2.0"},
+     {:httpotion, "~> 3.0.0"},
      {:poison, "~> 2.0"}]
   end
 
-  # Aliases are shortcut or tasks specific to the current project.
-  # For example, to create, migrate and run the seeds file at once:
-  #
-  #     $ mix ecto.setup
-  #
-  # See the documentation for `Mix` for more info on aliases.
   defp aliases do
-    ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"]]
+    #none right now
   end
+
+
 end

@@ -9,8 +9,6 @@ defmodule Armsday do
     children = [
       # Start the endpoint when the application starts
       supervisor(Armsday.Endpoint, []),
-      # Start the Ecto repository
-      supervisor(Armsday.Repo, []),
 
       # Start the SocketRequestAgent
       worker(SocketRequestAgent, []),
